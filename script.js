@@ -97,26 +97,57 @@ const removePlayer = async (playerId) => {
  */
 
 const renderAllPlayers = (playerList) => {
-  try {
-  } catch (err) {
-    console.error('Uh oh, trouble rendering players!', err)
-  }
+  // return a dom element that can be used in our innerHTML
+  // {id, name, breed, status, imageUrl, createdAt, updatedAt, teamId, cohortId}
+
+  const playersContainer = document.getElementById('all-players-container')
+
+  const componentArray = playerList.map((player, i) => {
+    const { id, name, breed, status, imageUrl, createdAt, updatedAt, teamId, cohortId } = player
+
+    //     const playerCard = document.createElement('div')
+    //     playerCard.id = id
+    //     playerCard.className.add('player-card')
+    //     playerCard.innerHTML = `
+    //     <h2 class="player-name">Name: ${name}</h2>
+    //     <h3 class="player-breed">Breed: ${breed}</h3>
+    //     <h3 class="player-status">Status: ${status}</h3>
+    //     <img class="player-img" src="${imageUrl}" alt="player name is ${name}"/>
+    //     <button id="details-${id}" class="player-btn">Details</button>
+    // `
+    const otherPlayerCard = `
+    <div id="${id}" className="player-card">
+      <h2 class="player-name">Name: ${name}</h2>
+      <h3 class="player-breed">Breed: ${breed}</h3>
+      <h3 class="player-status">Status: ${status}</h3>
+      <img class="player-img" src="${imageUrl}" alt="player name is ${name}"/>
+      <button id="details-${id}" class="player-btn">Details</button>
+    </div>
+      `
+    // playerCard.addEventListener("click", (e) => {
+    //   e.target.id
+    // })
+
+    // playersContainer.appendChild(playerCard)
+    return otherPlayerCard
+  })
+  playersContainer.innerHTML = componentArray.join('')
+  // playerContainer.appendChild()
+
+  // {playerList.map((player) => {return <PlayerComponent />})}
+  // return (<>...</>)
 }
 
 /**
- * It renders a form to the DOM, and when the form is submitted, it adds a new player to the database,
+ * renderNewPlayers renders a form to the DOM, and when the form is submitted, it adds a new player to the database,
  * fetches all players from the database, and renders them to the DOM.
  */
-const renderNewPlayerForm = () => {
-  try {
-  } catch (err) {
-    console.error('Uh oh, trouble rendering the new player form!', err)
-  }
-}
+const renderNewPlayerForm = () => {}
 
 const init = async () => {
-  const players = await fetchAllPlayers()
-  renderAllPlayers(players)
+  // also called main
+  const players = await fetchAllPlayers() // gets players state object[] -> Player[]
+  renderAllPlayers(players) // Builds the DOM
 
   renderNewPlayerForm()
 }
