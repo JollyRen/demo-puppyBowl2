@@ -116,7 +116,7 @@ const renderAllPlayers = (playerList) => {
     //     <button id="details-${id}" class="player-btn">Details</button>
     // `
     const otherPlayerCard = `
-    <div id="${id}" className="player-card">
+    <div id="player${id}" className="player-card">
       <h2 class="player-name">Name: ${name}</h2>
       <h3 class="player-breed">Breed: ${breed}</h3>
       <h3 class="player-status">Status: ${status}</h3>
@@ -136,6 +136,16 @@ const renderAllPlayers = (playerList) => {
 
   // {playerList.map((player) => {return <PlayerComponent />})}
   // return (<>...</>)
+  playersContainer.addEventListener('click', async (e) => {
+    const targetId = Number(e.target.id.slice(7))
+    if (typeof targetId === 'number') {
+      const singlePlayer = await fetchSinglePlayer(targetId)
+      const { id, name, breed, status, imageUrl, createdAt, updatedAt, teamId, cohortId, team } =
+        singlePlayer
+      //...
+      playersContainer.innerHTML = ``
+    }
+  })
 }
 
 /**
