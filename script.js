@@ -136,6 +136,21 @@ const renderAllPlayers = (playerList) => {
 
   // {playerList.map((player) => {return <PlayerComponent />})}
   // return (<>...</>)
+
+  playersContainer.addEventListener('click', async (e) => {
+    const targetId = Number(e.target.id.slice(7))
+    if (typeof targetId === 'number') {
+      const singlePlayer = await fetchSinglePlayer(targetId)
+      const { id, name, breed, status, imageUrl, createdAt, updatedAt, teamId, cohortId, team } =
+        singlePlayer
+      //...
+      const singlePlayerCard = `` // create card
+      const teamContainer = `` // create team container (not a requirement)
+
+      const SinglePlayerContainer = singlePlayerCard + teamContainer
+      playersContainer.innerHTML = SinglePlayerContainer
+    }
+  })
 }
 
 /**
