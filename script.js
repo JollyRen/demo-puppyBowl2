@@ -136,16 +136,6 @@ const renderAllPlayers = (playerList) => {
 
   // {playerList.map((player) => {return <PlayerComponent />})}
   // return (<>...</>)
-  playersContainer.addEventListener('click', async (e) => {
-    const targetId = Number(e.target.id.slice(7))
-    if (typeof targetId === 'number') {
-      const singlePlayer = await fetchSinglePlayer(targetId)
-      const { id, name, breed, status, imageUrl, createdAt, updatedAt, teamId, cohortId, team } =
-        singlePlayer
-      //...
-      playersContainer.innerHTML = ``
-    }
-  })
 }
 
 /**
@@ -156,10 +146,10 @@ const renderNewPlayerForm = () => {}
 
 const init = async () => {
   // also called main
-  const players = await fetchAllPlayers() // gets players state object[] -> Player[]
+  let players = await fetchAllPlayers() // gets players state object[] -> Player[]
   renderAllPlayers(players) // Builds the DOM
 
-  renderNewPlayerForm()
+  renderNewPlayerForm() // add a player - they won't show up....
 }
 
 init()
