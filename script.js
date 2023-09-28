@@ -143,7 +143,11 @@ const renderAllPlayers = (playerList) => {
       const { id, name, breed, status, imageUrl, createdAt, updatedAt, teamId, cohortId, team } =
         singlePlayer
       //...
-      playersContainer.innerHTML = ``
+      const singlePlayerCard = `` // create card
+      const teamContainer = `` // create team container (not a requirement)
+
+      const SinglePlayerContainer = singlePlayerCard + teamContainer
+      playersContainer.innerHTML = SinglePlayerContainer
     }
   })
 }
@@ -156,10 +160,10 @@ const renderNewPlayerForm = () => {}
 
 const init = async () => {
   // also called main
-  const players = await fetchAllPlayers() // gets players state object[] -> Player[]
+  let players = await fetchAllPlayers() // gets players state object[] -> Player[]
   renderAllPlayers(players) // Builds the DOM
 
-  renderNewPlayerForm()
+  renderNewPlayerForm() // add a player - they won't show up....
 }
 
 init()
