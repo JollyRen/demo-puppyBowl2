@@ -136,6 +136,7 @@ const renderAllPlayers = (playerList) => {
 
   // {playerList.map((player) => {return <PlayerComponent />})}
   // return (<>...</>)
+
   playersContainer.addEventListener('click', async (e) => {
     const targetId = Number(e.target.id.slice(7))
     if (typeof targetId === 'number') {
